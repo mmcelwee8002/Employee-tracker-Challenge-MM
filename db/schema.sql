@@ -15,7 +15,7 @@ CREATE TABLE roles(
   title VARCHAR(30),
   salary INTEGER NOT NULL,
   department_id INTEGER,
-  FOREIGN KEY (department_id) REFERENCES departments(id) ON DELETE SET NULL 
+  FOREIGN KEY (department_id) REFERENCES department(id) ON DELETE SET NULL 
  );
 
 CREATE TABLE employees(
