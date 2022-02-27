@@ -49,8 +49,8 @@ function firstPrompt() {
                     break;
                 case "Add employee":
                     addEmployee();
-                case "Update employee Role":
-                    updateEmployeeRole();
+                // case "Update employee Role":
+                //     updateEmployeeRole();
                     break;
                 case "QUIT":
                     process.exit();
@@ -149,7 +149,8 @@ function promptInsert(roleChoices) {
         .then(function (answer) {
             console.log(answer);
 
-            var query = `INSERT INTO employees SET ?`
+            
+            const query = `INSERT INTO employees SET ?`
             // when finished prompting, insert a new item into the db with that info
             connection.query(query,
                 {
@@ -171,95 +172,95 @@ function promptInsert(roleChoices) {
 //----------------updating items ------------------------------------
 
 
-//"Update Employee Role" / UPDATE,
-function updateEmployeeRole() {
-    employeeArray();
+// //"Update Employee Role" / UPDATE,
+// function updateEmployeeRole() {
+//     employeeArray();
 
-}
+// }
 
-function employeeArray() {
-    console.log("Updating an employee");
+// function employeeArray() {
+//     console.log("Updating an employee");
 
-    var query =
-        `SELECT e.id, e.first_name, e.last_name, r.title, d.name AS department, r.salary, CONCAT(m.first_name, ' ', m.last_name) AS manager
-  FROM employee e
-  JOIN role r
-	ON e.role_id = r.id
-  JOIN department d
-  ON d.id = r.department_id
-  JOIN employee m
-	ON m.id = e.manager_id`
+//     var query =
+//         `SELECT employees.id, employees.first_name, employees.last_name, roles.title, department.name AS department, r.salary, CONCAT(m.first_name, ' ', m.last_name) AS manager
+//   FROM employee e
+//   JOIN role r
+// 	ON e.role_id = r.id
+//   JOIN department d
+//   ON d.id = r.department_id
+//   JOIN employee m
+// 	ON m.id = e.manager_id`
 
-    connection.query(query, function (err, res) {
-        if (err) throw err;
+//     connection.query(query, function (err, res) {
+//         if (err) throw err;
 
-        const employeeChoices = res.map(({ id, first_name, last_name }) => ({
-            value: id, name: `${first_name} ${last_name}`
-        }));
+//         const employeeChoices = res.map(({ id, first_name, last_name }) => ({
+//             value: id, name: `${first_name} ${last_name}`
+//         }));
 
-        console.table(res);
-        console.log("employeeArray To Update!\n")
+//         console.table(res);
+//         console.log("employeeArray To Update!\n")
 
-        roleArray(employeeChoices);
-    });
-}
+//         roleArray(employeeChoices);
+//     });
+// }
 
-function roleArray(employeeChoices) {
-    console.log("Updating an role");
+// function roleArray(employeeChoices) {
+//     console.log("Updating an role");
 
-    var query =
-        `SELECT r.id, r.title, r.salary 
-  FROM role r`
-    let roleChoices;
+//     var query =
+//         `SELECT r.id, r.title, r.salary 
+//   FROM role r`
+//     let roleChoices;
 
-    connection.query(query, function (err, res) {
-        if (err) throw err;
+//     connection.query(query, function (err, res) {
+//         if (err) throw err;
 
-        roleChoices = res.map(({ id, title, salary }) => ({
-            value: id, title: `${title}`, salary: `${salary}`
-        }));
+//         roleChoices = res.map(({ id, title, salary }) => ({
+//             value: id, title: `${title}`, salary: `${salary}`
+//         }));
 
-        console.table(res);
-        console.log("roleArray to Update!\n")
+//         console.table(res);
+//         console.log("roleArray to Update!\n")
 
-        promptEmployeeRole(employeeChoices, roleChoices);
-    });
-}
+//         promptEmployeeRole(employeeChoices, roleChoices);
+//     });
+// }
 
-function promptEmployeeRole(employeeChoices, roleChoices) {
+// function promptEmployeeRole(employeeChoices, roleChoices) {
 
-    inquirer
-        .prompt([
-            {
-                type: "list",
-                name: "employeeId",
-                message: "Which employee do you want to set with the role?",
-                choices: employeeChoices
-            },
-            {
-                type: "list",
-                name: "roleId",
-                message: "Which role do you want to update?",
-                choices: roleChoices
-            },
-        ])
-        .then(function (answer) {
+//     inquirer
+//         .prompt([
+//             {
+//                 type: "list",
+//                 name: "employeeId",
+//                 message: "Which employee do you want to set with the role?",
+//                 choices: employeeChoices
+//             },
+//             {
+//                 type: "list",
+//                 name: "roleId",
+//                 message: "Which role do you want to update?",
+//                 choices: roleChoices
+//             },
+//         ])
+//         .then(function (answer) {
 
-            var query = `UPDATE employee SET role_id = ? WHERE id = ?`
-            // when finished prompting, insert a new item into the db with that info
-            connection.query(query,
-                [answer.roleId,
-                answer.employeeId
-                ],
-                function (err, res) {
-                    if (err) throw err;
+//             var query = `UPDATE employee SET role_id = ? WHERE id = ?`
+//             // when finished prompting, insert a new item into the db with that info
+//             connection.query(query,
+//                 [answer.roleId,
+//                 answer.employeeId
+//                 ],
+//                 function (err, res) {
+//                     if (err) throw err;
 
-                    console.table(res);
-                    console.log(res.affectedRows + "Updated successfully!");
+//                     console.table(res);
+//                     console.log(res.affectedRows + "Updated successfully!");
 
-                    firstPrompt();
-                });
-        });
-}
+//                     firstPrompt();
+//                 });
+//         });
+// }
 
 // process.exit();
