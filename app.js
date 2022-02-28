@@ -19,7 +19,30 @@ const db = mysql.createConnection({
 );
 
 db.connect(function (err) {
-    console.log('connected- this will change evenually')
+    console.log(`
+
+--  ██╗    ██╗███████╗██╗      ██████╗ ██████╗ ███╗   ███╗███████╗    ████████╗ ██████╗
+    --  ██║    ██║██╔════╝██║     ██╔════╝██╔═══██╗████╗ ████║██╔════╝    ╚══██╔══╝██╔═══██╗
+    --  ██║ █╗ ██║█████╗  ██║     ██║     ██║   ██║██╔████╔██║█████╗         ██║   ██║   ██║
+    --  ██║███╗██║██╔══╝  ██║     ██║     ██║   ██║██║╚██╔╝██║██╔══╝         ██║   ██║   ██║
+    --  ╚███╔███╔╝███████╗███████╗╚██████╗╚██████╔╝██║ ╚═╝ ██║███████╗       ██║   ╚██████╔╝
+    --   ╚══╝╚══╝ ╚══════╝╚══════╝ ╚═════╝ ╚═════╝ ╚═╝     ╚═╝╚══════╝       ╚═╝    ╚═════╝
+    --                                                                                          
+--  ███████╗███╗   ███╗██████╗ ██╗      ██████╗ ██╗   ██╗███████╗███████╗
+    --  ██╔════╝████╗ ████║██╔══██╗██║     ██╔═══██╗╚██╗ ██╔╝██╔════╝██╔════╝
+    --  █████╗  ██╔████╔██║██████╔╝██║     ██║   ██║ ╚████╔╝ █████╗  █████╗
+    --  ██╔══╝  ██║╚██╔╝██║██╔═══╝ ██║     ██║   ██║  ╚██╔╝  ██╔══╝  ██╔══╝
+    --  ███████╗██║ ╚═╝ ██║██║     ███████╗╚██████╔╝   ██║   ███████╗███████╗
+    --  ╚══════╝╚═╝     ╚═╝╚═╝     ╚══════╝ ╚═════╝    ╚═╝   ╚══════╝╚══════╝
+    --                                                                                          
+--  ████████╗██████╗  █████╗  ██████╗██╗  ██╗███████╗██████╗
+    --  ╚══██╔══╝██╔══██╗██╔══██╗██╔════╝██║ ██╔╝██╔════╝██╔══██╗
+    --     ██║   ██████╔╝███████║██║     █████╔╝ █████╗  ██████╔╝
+    --     ██║   ██╔══██╗██╔══██║██║     ██╔═██╗ ██╔══╝  ██╔══██╗
+    --     ██║   ██║  ██║██║  ██║╚██████╗██║  ██╗███████╗██║  ██║
+    --     ╚═╝   ╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝
+`)
+
     firstPrompt()
 })
 function firstPrompt() {
@@ -29,7 +52,7 @@ function firstPrompt() {
             name: 'choices',
             message: 'What would you like to do?',
             choices: 
-                ['View ALL Departments', 'View ALL employees', 'View all Roles', 'Budget All Roles', 'Budget by Department',  'Add employee', 'Update Employee Role',  'Add a Department','Quit'  ]
+                ['View ALL Departments', 'View ALL employees', 'View all Roles', 'Budget All Roles', 'Budget by Department', 'Add employee', 'Update Employee Role', 'Add a Department','QUIT'  ]
             
         }
     ])
@@ -67,8 +90,8 @@ function firstPrompt() {
                     viewByDept();
                         
                     break;      
-                // case "QUIT":
-                //     quit();
+                case "QUIT":
+                    quit();
             }
         })
 }
@@ -221,8 +244,8 @@ firstPrompt();
 
 
 
-// const quit = ()=>{
-// console.log("Thank you, goodbye!")
-//     process.exit();
+const quit = ()=>{
+console.log("Thank you, goodbye!")
+    process.exit();
 
-// }
+}

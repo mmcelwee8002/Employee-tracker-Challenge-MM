@@ -14,8 +14,7 @@ It is a Employee Tracking software built with nodeJs, and mySQL
 * MySQL
 
 ## Demo video
-
-
+https://drive.google.com/file/d/1V2eqBFo354yTNz5hsLZkAwSJC5B8m2-3/view?usp=sharing
 
 ### Contribution
 Matthew McElwee
